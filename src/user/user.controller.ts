@@ -3,15 +3,15 @@ import { CreateUserDTO } from "./dto/create-user.dto";
 import { UpdatePutUserDTO } from "./dto/update-put-user.dto";
 import { UpdatePatchUserDTO } from "./dto/update-patch-user.dto";
 import { UserService } from "./user.service";
-import { LogInterceptor } from "src/Interceptors/log.interceptor";
-import { ParamId } from "src/Decorators/param-id.decorator";
-import { Roles } from "src/Decorators/role.decorator";
-import { Role } from "src/Enums/role.enum";
-import { RoleGuard } from "src/Guards/role.guard";
-import { AuthGuard } from "@nestjs/passport";
+import { AuthGuard } from "../Guards/auth.guard";
+import { LogInterceptor } from "../Interceptors/log.interceptor";
+import { Role } from "../Enums/role.enum";
+import { Roles } from "../Decorators/role.decorator";
+import { ParamId } from "../Decorators/param-id.decorator";
+import { RoleGuard } from "../Guards/role.guard";
 
 
-//@UseGuards(RoleGuard, AuthGuard)
+@UseGuards(RoleGuard, AuthGuard)
 @UseInterceptors(LogInterceptor)
 @Controller('users')
 export class UserController {
